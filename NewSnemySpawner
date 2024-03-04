@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NewEnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> enemyPrefab;
-    [SerializeField] private List<Transform> spawnPoints;
-    [SerializeField] private List<Transform> target;
-    [SerializeField] private float spawnInterval = 2.0f;
+    [SerializeField] private List<EnemyMovementTarget> _enemyPrefab;
+    [SerializeField] private List<Transform> _spawnPoints;
+    [SerializeField] private List<Transform> _target;
+    [SerializeField] private float _spawnInterval = 2.0f;
 
     private void Start()
     {
@@ -16,18 +16,21 @@ public class NewEnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
+        WaitForSeconds wait = new WaitForSeconds(_spawnInterval);
+
         while (true)
         {
-            int randomIndex = Random.Range(0, spawnPoints.Count);
-            Transform spawnPoint = spawnPoints[randomIndex];
+            int randomIndex = Random.Range(0, _spawnPoints.Count);
 
-            GameObject enemy = Instantiate(enemyPrefab[randomIndex], spawnPoint.position, spawnPoint.rotation);
+            Transform spawnPoint = _spawnPoints[randomIndex];
+
+            EnemyMovementTarget enemy = Instantiate(_enemyPrefab[randomIndex], spawnPoint.position, spawnPoint.rotation);
 
             EnemyMovementTarget enemyMovement = enemy.GetComponent<EnemyMovementTarget>();
 
-            enemyMovement.target = target[randomIndex];
+            enemyMovement._target = _target[randomIndex];
 
-            yield return new WaitForSeconds(spawnInterval);
+            yield return wait;
         }
     }
 }
