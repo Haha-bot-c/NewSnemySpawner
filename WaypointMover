@@ -4,7 +4,6 @@ public class WaypointMover : MonoBehaviour
 {
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private float _speed = 10.0f;
-    [SerializeField] private bool isLastWypoint = false;
 
     private int currentWaypointIndex = 0;
 
