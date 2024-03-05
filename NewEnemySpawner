@@ -5,8 +5,8 @@ using UnityEngine;
 public class NewEnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<EnemyMovementTarget> _enemyPrefab;
+    [SerializeField] private List<WaypointMover> _target;
     [SerializeField] private List<Transform> _spawnPoints;
-    [SerializeField] private List<Transform> _target;
     [SerializeField] private float _spawnInterval = 2.0f;
 
     private void Start()
@@ -16,7 +16,7 @@ public class NewEnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        WaitForSeconds wait = new WaitForSeconds(_spawnInterval);
+        WaitForSeconds wait = new(_spawnInterval);
 
         while (true)
         {
@@ -34,3 +34,4 @@ public class NewEnemySpawner : MonoBehaviour
         }
     }
 }
+
