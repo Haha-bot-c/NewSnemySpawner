@@ -26,9 +26,7 @@ public class NewEnemySpawner : MonoBehaviour
 
             EnemyMovementTarget enemy = Instantiate(_enemyPrefab[randomIndex], spawnPoint.position, spawnPoint.rotation);
 
-            EnemyMovementTarget enemyMovement = enemy.GetComponent<EnemyMovementTarget>();
-
-            enemyMovement._target = _target[randomIndex];
+            enemy._target = _target[randomIndex];
 
             yield return wait;
         }
