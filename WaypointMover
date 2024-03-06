@@ -5,22 +5,17 @@ public class WaypointMover : MonoBehaviour
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private float _speed = 10.0f;
 
-    private int currentWaypointIndex = 0;
+    private int _currentWaypointIndex = 0;
 
     private void Update()
     {
-        Transform currentWaypoint = _waypoints[currentWaypointIndex];
+        Transform currentWaypoint = _waypoints[_currentWaypointIndex];
 
         transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, _speed * Time.deltaTime);
 
         if (transform.position == currentWaypoint.position)
         {
-            currentWaypointIndex++;
-
-            if (currentWaypointIndex >= _waypoints.Length)
-            {
-                currentWaypointIndex = 0;
-            }
+            _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
         }
     }
 }
