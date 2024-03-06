@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class EnemyMovementTarget : MonoBehaviour
 {
-    [HideInInspector] public WaypointMover _target;
+    public WaypointMover Target;
     private float _speed = 5f;
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, _speed * Time.deltaTime);
 
-        if (transform.position == _target.transform.position)
+        if (transform.position == Target.transform.position)
             Destroy(gameObject);
     }
 }
