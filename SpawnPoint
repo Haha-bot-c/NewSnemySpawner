@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class SpawnPoint : MonoBehaviour
+{
+    [SerializeField] private EnemyMovementTarget _enemyPrefab;
+    [SerializeField] private WaypointMover _target;
+
+    public void SpawnEnemy()
+    {
+        EnemyMovementTarget enemy = Instantiate(_enemyPrefab, transform.position, transform.rotation);
+
+        enemy.GetTargetPosition(_target);
+    }
+}
